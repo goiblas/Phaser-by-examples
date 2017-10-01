@@ -1,0 +1,33 @@
+var GameOver = {
+    preload: function(){
+        juego.load.image('boton', '../img/btn.png');
+        juego.load.image('title', '../img/title.png');
+        juego.load.image('bg', '../img/bg_full.png');
+    },
+    
+    create: function(){
+       juego.add.tileSprite(0, 0, juego.width, juego.height, 'bg');
+        
+        var boton = this.add.button(juego.width / 2, juego.height/ 2,'boton', this.iniciarJuego, this);
+        boton.anchor.setTo(0.5);
+        boton.scale.setTo(0.6);
+    
+        var title = this.add.sprite(juego.width / 2, 120, 'title');
+        title.anchor.setTo(0.5);
+        title.scale.setTo(0.3);
+
+        var texto = this.add.text(juego.width/2, 200, 'Game over');
+        texto.anchor.setTo(0.5);
+
+        score = (score < 0) ? 0: score;
+        var puntos = this.add.text(juego.width/2,juego.height - 160, score + ' puntos', {
+            font: '20px Arial', fill: '#444'
+        });
+        puntos.anchor.setTo(0.5);
+    },
+
+
+    iniciarJuego: function(){
+        this.state.start('Juego');
+    }
+}
